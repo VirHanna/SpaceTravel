@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.example.db.HibernateUtil;
 import org.example.model.Ticket;
 
+import java.util.List;
 import java.util.Optional;
 
 public class TicketDao implements Dao<Ticket, Long> {
@@ -58,6 +59,12 @@ public class TicketDao implements Dao<Ticket, Long> {
                 tx.rollback();
                 throw new DataProcessingException("Fail to delete ticket", e);
             }
+        }
+    }
+
+    public List<Ticket> getAll() {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Ticket", Ticket.class).list();  // Запит для отримання всіх квитків
         }
     }
 }

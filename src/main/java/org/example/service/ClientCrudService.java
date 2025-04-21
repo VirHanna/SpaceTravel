@@ -9,11 +9,14 @@ public class ClientCrudService {
 
     private final ClientDao clientDao = new ClientDao();
 
-    public void saveClient(Client client) {
+    public Long createClient(String name) {
+        Client client = new Client();
+        client.setName(name);
         clientDao.save(client);
+        return client.getId();
     }
 
-    public Optional<Client> findClientById(Long id) {
+    public Optional<Client> getClient(Long id) {
         return clientDao.getById(id);
     }
 

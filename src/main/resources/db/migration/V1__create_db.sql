@@ -13,8 +13,9 @@ CREATE TABLE planets
 CREATE TABLE tickets
 (
     id             LONG PRIMARY KEY AUTO_INCREMENT,
-    created_at     TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     client_id      LONG NOT NULL REFERENCES clients(id),
     from_planet_id VARCHAR(20) NOT NULL REFERENCES planets(id),
     to_planet_id   VARCHAR(20) NOT NULL REFERENCES planets(id)
 );
+

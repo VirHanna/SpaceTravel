@@ -8,6 +8,9 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "planets")
@@ -17,9 +20,11 @@ import lombok.Setter;
 public class Planet {
 
     @Id
-    @Pattern(regexp = "^[A-Z]+$")
+    @Pattern(regexp = "^[A-Z0-9]+$")
     private String id;
-    @Column(length = 500)
+    @Column(length = 500, nullable = false)
+    @Size(min = 1, max = 500)
+    @NotNull
     private String name;
 
     public Planet(String id, String name) {

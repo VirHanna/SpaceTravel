@@ -17,11 +17,20 @@ public class PlanetCrudService {
         return planetDao.getById(id);
     }
 
+    public Optional<Planet> getPlanet(String id) {
+        return findPlanetById(id);
+    }
+
     public void updatePlanet(Planet planet) {
         planetDao.update(planet);
     }
 
     public void deletePlanet(Planet planet) {
         planetDao.delete(planet);
+    }
+
+    public void createPlanet(String id, String name) {
+        Planet planet = new Planet(id, name);
+        savePlanet(planet);
     }
 }

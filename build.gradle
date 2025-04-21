@@ -17,18 +17,21 @@ dependencies {
     implementation("org.flywaydb:flyway-core:11.4.1")
     compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
-    annotationProcessor 'org.projectlombok:lombok:1.18.36'
-    compileOnly 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+    implementation 'org.glassfish:jakarta.el:4.0.2'
     implementation 'org.slf4j:slf4j-api:2.0.0-alpha7'
     implementation 'org.hibernate.orm:hibernate-core:6.6.13.Final'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
 }
+
 
 test {
     useJUnitPlatform()
 }
 
 flyway {
-    url = 'jdbc:h2:~/test'
+    url = 'jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1'
     user = 'sa'
     locations = ['filesystem:src/main/resources/db/migration']
 }
